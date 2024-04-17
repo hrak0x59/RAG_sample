@@ -1,0 +1,9 @@
+Flask
+flask-cors
+langchain
+openai
+langchain_openai
+pypdf
+tiktoken
+chromadb==0.4.15
+python-dotenv

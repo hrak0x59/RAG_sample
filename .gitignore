@@ -1,0 +1,15 @@
+
+.next
+
+.env
+.env.build
+
+flont/node_modules/
+
+back/venv/
+back/__pycache__/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
