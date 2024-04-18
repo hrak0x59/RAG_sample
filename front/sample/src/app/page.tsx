@@ -31,8 +31,8 @@ export default function Home() {
           </div>
         </div>
       ) : data ? (
-        <div>
-          <p className="text-3xl font-bold text-gray-800 text-ceter">{data}</p>
+        <div className="flex justify-center items-center">
+          <p className="text-3xl font-bold text-gray-800 text-center">{data}</p>
         </div>
       ) : (
         <>
