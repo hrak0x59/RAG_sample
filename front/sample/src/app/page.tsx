@@ -32,11 +32,11 @@ export default function Home() {
         </div>
       ) : data ? (
         <div className="flex justify-center items-center">
-          <p className="text-3xl font-bold text-gray-800 text-center">{data}</p>
+          <p className="md:text-3xl text-xl font-bold text-gray-800 text-center">{data}</p>
         </div>
       ) : (
         <>
-          <h1 className="text-7xl font-bold text-gray-800 flex justify-center mb-10 tracking-widest">
+          <h1 className="md:text-7xl text-5xl font-bold text-gray-800 flex justify-center mb-10 tracking-widest">
             JIROU
           </h1>
           <form onSubmit={handleSubmit} className="flex justify-center">
@@ -46,7 +46,7 @@ export default function Home() {
             >
               Search
             </label>
-            <div className="relative w-1/2">
+            <div className="relative md:w-1/2 w-3/4">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg
                   className="w-4 h-4 text-gray-500 dark:text-gray-400"
