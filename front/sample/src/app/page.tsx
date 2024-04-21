@@ -44,16 +44,21 @@ export default function Home() {
 
   return (
     <div className="">
-      <div className="mt-60 container mx-auto py-8 content-center h-5/6">
+      <div className="container mx-auto py-8 content-center h-5/6">
         {loading ? (
-          <div className="flex justify-center items-center">
+          <div className="mt-60 flex justify-center items-center">
             <div className="animate-bounce">
               <img src="/jirou.png" width={150} />
             </div>
           </div>
         ) : data.RAG ? (
           <div>
-            <div className="mt-16 flex justify-center items-center">
+            <div className="mt-48 flex justify-center items-center">
+              <p className="text-3xl font-bold rounded-full p-8 m-2 bg-gray-600 text-yellow-300">
+                {query}
+              </p>
+            </div>
+            <div className="mt-8 flex justify-center items-center">
               <p className="md:text-3xl text-xl font-bold text-gray-600 text-center">
                 {data.RAG}
               </p>
@@ -89,7 +94,7 @@ export default function Home() {
           </div>
         ) : (
           <>
-            <h1 className="md:text-7xl text-5xl font-bold text-gray-600 flex justify-center mb-10 tracking-widest">
+            <h1 className="mt-60 md:text-7xl text-5xl font-bold text-gray-600 flex justify-center mb-10 tracking-widest">
               JIROU
             </h1>
             <form onSubmit={handleSubmit} className="flex justify-center">
