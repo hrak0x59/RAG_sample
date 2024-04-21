@@ -62,7 +62,7 @@ export default function Home() {
                 <h1 className="m-10 md:text-3xl text-xl font-bold text-gray-600 text-center">
                   参考にした箇所
                 </h1>
-                <ul>
+                <ul className="mb-20">
                   {data.ROW.map((item, index) => (
                     <li
                       className="mt-5 rounded-xl p-5 m-2 bg-gray-600 text-yellow-200"
