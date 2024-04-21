@@ -16,6 +16,7 @@ import os
 
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_BASE"]= 'https://api.openai.iniad.org/api/v1'
 
 embeddings_model = OpenAIEmbeddings()
 loader = PyPDFLoader("right.pdf")
@@ -31,6 +32,8 @@ text_splitter = RecursiveCharacterTextSplitter(
 documents = text_splitter.create_documents([text])
 db = Chroma.from_documents(documents, embeddings_model)
 retriever = db.as_retriever()
+
+# model I/O
 
 template = """Answer the question based only on the following context:
 
@@ -61,8 +64,7 @@ CORS(app)
 
 @app.route('/api/<query>')
 def search(query):
-    input = query
-    return chain.invoke(input)
+    return chain.invoke(query)
 
 if __name__ == '__main__':
     app.run(debug=True)
