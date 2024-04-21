@@ -1,5 +1,5 @@
 "use client";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 interface Data {
   RAG: string;
@@ -21,7 +21,7 @@ export default function Home() {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
