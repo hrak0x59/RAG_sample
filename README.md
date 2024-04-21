@@ -9,7 +9,8 @@
 [参照](https://sites.google.com/iniad.org/developers/%E3%83%9B%E3%83%BC%E3%83%A0/openai-api#h.flqa5rmqw87m)
 
 ```sh
-OPENAI_API_KEY={APIキー}
+OPENAI_API_KEY={INIADのAPIキー}
+OPENAI_API_BASE=https://api.openai.iniad.org/api/v1
 ```
 
 
