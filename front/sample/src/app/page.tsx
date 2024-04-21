@@ -1,6 +1,5 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react";
-import Image from "next/image";
+import { useState, ChangeEvent } from "react";
 
 interface Data {
   RAG: string;
@@ -22,14 +21,25 @@ export default function Home() {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch(`http://127.0.0.1:5000/api/${query}`);
-    const responseData = await response.json();
-    console.log(responseData);
-    setLoading(false);
-    setData(responseData);
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/${query}`);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+      setData(responseData);
+    } catch (error) {
+      console.error('Fetch error:', error);
+      alert('エラーが発生しました。もう一度お試しください。');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
