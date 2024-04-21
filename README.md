@@ -4,7 +4,10 @@
 
 ## バックエンド
 #### `.env`ファイルの作成
-プロジェクトのルートディレクトリに作ってね♡
+プロジェクトのルートディレクトリに作ってね♡  
+#### [変更]iniadAPIに変更しました！  
+[参照](https://sites.google.com/iniad.org/developers/%E3%83%9B%E3%83%BC%E3%83%A0/openai-api#h.flqa5rmqw87m)
+
 ```sh
 OPENAI_API_KEY={APIキー}
 ```
@@ -36,8 +39,8 @@ python api.py
 
 
 ## フロントエンド
-nodeを入れてなかったら入れてください！
-(nodeのインストール)[https://nodejs.org/en]
+nodeを入れてなかったら入れてください！  
+[nodeのインストール](https://nodejs.org/en)
 
 #### ディレクトリの移動
 ```sh
@@ -53,5 +56,5 @@ npm install
 npm run dev
 ```
 
-[http://localhost:3000/](http://localhost:3000/)
+[http://localhost:3000/](http://localhost:3000/)  
 これでアクセスできるようになるはず
