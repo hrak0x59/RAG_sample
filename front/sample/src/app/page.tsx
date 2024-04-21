@@ -44,7 +44,7 @@ export default function Home() {
         ) : data.RAG ? (
           <div>
             <div className="mt-16 flex justify-center items-center">
-              <p className="md:text-3xl text-xl font-bold text-gray-800 text-center">
+              <p className="md:text-3xl text-xl font-bold text-gray-600 text-center">
                 {data.RAG}
               </p>
             </div>
@@ -59,17 +59,19 @@ export default function Home() {
             </div>
             {row ? (
               <>
-              <h1 className="m-10 md:text-3xl text-xl font-bold text-gray-600 text-center">参考にした箇所</h1>
-              <ul>
-                {data.ROW.map((item, index) => (
-                  <li
-                    className="mt-5 rounded-xl p-5 m-2 bg-yellow-200 text-gray-600"
-                    key={index}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+                <h1 className="m-10 md:text-3xl text-xl font-bold text-gray-600 text-center">
+                  参考にした箇所
+                </h1>
+                <ul>
+                  {data.ROW.map((item, index) => (
+                    <li
+                      className="mt-5 rounded-xl p-5 m-2 bg-gray-600 text-yellow-200"
+                      key={index}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </>
             ) : (
               <></>
@@ -77,7 +79,7 @@ export default function Home() {
           </div>
         ) : (
           <>
-            <h1 className="md:text-7xl text-5xl font-bold text-gray-800 flex justify-center mb-10 tracking-widest">
+            <h1 className="md:text-7xl text-5xl font-bold text-gray-600 flex justify-center mb-10 tracking-widest">
               JIROU
             </h1>
             <form onSubmit={handleSubmit} className="flex justify-center">
@@ -125,6 +127,26 @@ export default function Home() {
             </form>
           </>
         )}
+      </div>
+
+      <div className="flex justify-center">
+        <footer
+          style={{ position: "fixed", bottom: 0 }}
+          className="w-3/4 bg-yellow-200 rounded-lg shadow m-4 dark:bg-gray-800"
+        >
+          <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+              © 2024 jirolianz.
+            </span>
+            <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+              <li>
+                <a href="/" className="hover:underline me-4 md:me-6">
+                  home
+                </a>
+              </li>
+            </ul>
+          </div>
+        </footer>
       </div>
     </div>
   );
