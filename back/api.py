@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import json
 from flask_cors import CORS
 from dotenv import load_dotenv
 from langchain.document_loaders import TextLoader
@@ -64,7 +65,9 @@ CORS(app)
 
 @app.route('/api/<query>')
 def search(query):
-    return chain.invoke(query)
+    references = retriever.get_relevant_documents(query)
+    strings = [doc.page_content for doc in references]
+    return jsonify({"RAG":chain.invoke(query), "ROW":strings})
 
 if __name__ == '__main__':
     app.run(debug=True)
