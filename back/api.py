@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import json
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -20,6 +20,9 @@ embeddings_model = OpenAIEmbeddings()
 loader = PyPDFLoader("right.pdf")
 text = "\n".join([page.page_content for page in loader.load()])
 
+loader2 = PyPDFLoader("hanrei.pdf")
+text2 = text + "\n".join([page.page_content for page in loader2.load()])
+
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=300,
     chunk_overlap=20,
@@ -30,6 +33,10 @@ text_splitter = RecursiveCharacterTextSplitter(
 documents = text_splitter.create_documents([text])
 db = Chroma.from_documents(documents, embeddings_model)
 retriever = db.as_retriever()
+
+documents2 = text_splitter.create_documents([text2])
+db2 = Chroma.from_documents(documents2, embeddings_model)
+retriever2 = db2.as_retriever()
 
 # model I/O
 
@@ -55,16 +62,35 @@ chain = (
     | StrOutputParser(verbose=True)
     )
 
+chain2 = (
+    {"context": retriever2 | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser(verbose=True)
+    )
 
 
 app = Flask(__name__)
 CORS(app)
+data = {
+    'RAG': '質問を入力してください',
+    'ROW': 'データなし',
+}
 
-@app.route('/api/<query>')
-def search(query):
-    references = retriever.get_relevant_documents(query)
-    strings = [doc.page_content for doc in references]
-    return jsonify({"RAG":chain.invoke(query), "ROW":strings})
+@app.route('/', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    han = request.args.get('han')
+    if han == "YES":
+        references = retriever2.get_relevant_documents(query)
+        strings = [doc.page_content for doc in references]
+        return jsonify({"RAG":chain2.invoke(query), "ROW":strings})
+    elif han == "NO":
+        references = retriever.get_relevant_documents(query)
+        strings = [doc.page_content for doc in references]
+        return jsonify({"RAG":chain.invoke(query), "ROW":strings})
+    else:
+        return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

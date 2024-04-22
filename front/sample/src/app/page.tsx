@@ -24,19 +24,27 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/${query}`);
+      const params = {
+        query: query,
+        han: "YES"
+      };
+
+      const queryString = new URLSearchParams(params).toString();
+
+      const response = await fetch(`http://127.0.0.1:5000/?${queryString}`);
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const responseData = await response.json();
       console.log(responseData);
       setData(responseData);
     } catch (error) {
-      console.error('Fetch error:', error);
-      alert('エラーが発生しました。もう一度お試しください。');
+      console.error("Fetch error:", error);
+      alert("エラーが発生しました。もう一度お試しください。");
     } finally {
       setLoading(false);
     }
